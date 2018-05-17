@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        var firstDom = document.getElementById('first-number');
+        var secondDom = document.getElementById('second-number');
+        var resultDom = document.getElementById('result');
+
+        // 第一种方式：
+        // document.getElementById('add-btn').onclick = function () {
+        //     var firstVal = Number(firstDom.value);
+        //     var sencondVal = Number(secondDom.value);
+        //     var result = firstVal + sencondVal;
+        //     resultDom.innerHTML = result;
+        // }
+        // document.getElementById('minus-btn').onclick = function () {
+        //     var firstVal = Number(firstDom.value);
+        //     var sencondVal = Number(secondDom.value);
+        //     var result = firstVal - sencondVal;
+        //     resultDom.innerHTML = result;
+        // }
+        // document.getElementById('times-btn').onclick = function () {
+        //     var firstVal = Number(firstDom.value);
+        //     var sencondVal = Number(secondDom.value);
+        //     var result = firstVal * sencondVal;
+        //     resultDom.innerHTML = result;
+        // }
+        // document.getElementById('divide-btn').onclick = function () {
+        //     var firstVal = Number(firstDom.value);
+        //     var sencondVal = Number(secondDom.value);
+        //     var result = firstVal / sencondVal;
+        //     resultDom.innerHTML = result;
+        // }
+        // 第二种方式:
+        function toCalculate (type) {
+            var result = 0;
+            var firstVal = Number(firstDom.value);
+            var sencondVal = Number(secondDom.value);
+            switch (type) {
+            case 'add':
+                result = firstVal + sencondVal
+                break;
+            case 'minus':
+                result = firstVal - sencondVal
+                break;
+            case 'times':
+                result = firstVal * sencondVal
+                break;
+            case 'divide':
+                result = firstVal / sencondVal
+                break;
+            default:
+                return '错误'
+            }
+            resultDom.innerHTML = result;
+            return result;
+        }
+        function eventFun (elm, type) {
+            var elm = document.getElementById(elm);
+            if (!elm) {
+                return;
+            }
+            switch (type) {
+            case 'add':
+                elm.addEventListener('click', function () {
+                    toCalculate(type);
+                }, false);
+                break;
+            case 'minus':
+                elm.addEventListener('click', function () {
+                    toCalculate(type);
+                }, false);
+            case 'times':
+                elm.addEventListener('click', function () {
+                    toCalculate(type);
+                }, false);
+                break;
+            case 'divide':
+                elm.addEventListener('click', function() {
+                    toCalculate(type)
+                }, false);
+                break;
+            }
+        }
+        eventFun('add-btn', 'add');
+        eventFun('minus-btn', 'minus');
+        eventFun('times-btn', 'times');
+        eventFun('divide-btn', 'divide');
+    </script>
+</body>
+</html>
